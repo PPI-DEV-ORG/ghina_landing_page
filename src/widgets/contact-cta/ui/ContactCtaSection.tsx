@@ -32,22 +32,22 @@ export function ContactCtaSection() {
                 Hubungi tim teknis PT Ghina Multi Prima sekarang. Kami siap membantu survei lokasi untuk menentukan titik pasang kamera optimal, penarikan jalur kabel efisien, serta simulasi demo software SAMTEK VMS.
               </p>
 
-              <div className="pt-2 flex flex-wrap gap-3.5">
-                <Button asChild size="lg" variant="whatsapp" className="font-bold h-12 px-6 rounded-lg text-xs sm:text-sm shadow-xs">
+              <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                <Button asChild size="lg" variant="whatsapp" className="font-bold h-11 px-5 rounded-lg text-xs sm:text-sm shadow-xs w-full sm:w-auto">
                   <a
                     href={SITE_CONFIG.contact.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+                    className="flex items-center justify-center gap-2"
                   >
-                    <PhoneCall className="w-4 h-4" />
-                    Chat WhatsApp Langsung ({SITE_CONFIG.contact.phoneDisplay})
+                    <PhoneCall className="w-4 h-4 shrink-0" />
+                    Chat via WhatsApp
                   </a>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="font-semibold h-12 px-6 rounded-lg text-xs sm:text-sm border-[#E2ECE8] hover:bg-[#F0F5F4]">
-                  <Link href="/contact" className="flex items-center gap-2">
-                    Form Permintaan Penawaran
-                    <ArrowRight className="w-4 h-4" />
+                <Button asChild size="lg" variant="outline" className="font-semibold h-11 px-5 rounded-lg text-xs sm:text-sm border-[#E2ECE8] hover:bg-[#F0F5F4] w-full sm:w-auto">
+                  <Link href="/contact" className="flex items-center justify-center gap-2">
+                    Form Penawaran
+                    <ArrowRight className="w-4 h-4 shrink-0" />
                   </Link>
                 </Button>
               </div>

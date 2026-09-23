@@ -8,6 +8,8 @@ import { Textarea } from "@/shared/ui/textarea";
 import { Button } from "@/shared/ui/button";
 import { Upload, Loader2, Image as ImageIcon } from "lucide-react";
 
+import { RichTextEditor } from "./RichTextEditor";
+
 interface BlogEditorModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -137,7 +139,7 @@ export function BlogEditorModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-[95vw] max-w-5xl max-h-[92vh] overflow-y-auto p-4 sm:p-7">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-foreground">
             {post ? "Edit Artikel Blog" : "Tulis Artikel Blog Baru"}
@@ -272,16 +274,15 @@ export function BlogEditorModal({
 
           <div>
             <label className="block text-xs font-semibold text-secondary mb-1">
-              Konten Lengkap Artikel (Mendukung Markdown & Paragraf) *
+              Konten Lengkap Artikel (Format Visual / Rich Text Editor) *
             </label>
-            <Textarea
-              required
-              rows={8}
+            <RichTextEditor
               value={formData.content || ""}
-              onChange={(e) =>
-                setFormData((p) => ({ ...p, content: e.target.value }))
+              onChange={(newHtml) =>
+                setFormData((p) => ({ ...p, content: newHtml }))
               }
-              placeholder="Tuliskan isi artikel lengkap di sini. Gunakan ### untuk sub-judul..."
+              placeholder="Tuliskan isi artikel lengkap di sini. Anda bisa mengubah warna font, bold, italic, heading, list, dll..."
+              minHeight="340px"
             />
           </div>
 

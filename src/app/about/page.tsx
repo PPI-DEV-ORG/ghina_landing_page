@@ -343,9 +343,9 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Button asChild variant="secondary" size="lg" className="font-bold">
-              <Link href="/contact">Hubungi Kami untuk Konsultasi Proyek Anda</Link>
+          <div className="mt-12 text-center px-2 flex flex-col items-center justify-center">
+            <Button asChild variant="secondary" size="lg" className="font-bold h-11 px-6 rounded-lg text-xs sm:text-sm">
+              <Link href="/contact">Konsultasi Proyek Anda</Link>
             </Button>
           </div>
         </div>

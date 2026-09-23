@@ -130,8 +130,8 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              <div className="pt-2">
-                <Button asChild variant="whatsapp" size="lg" className="font-bold">
+              <div className="pt-2 flex justify-center lg:justify-start">
+                <Button asChild variant="whatsapp" size="lg" className="font-bold h-11 px-6 rounded-lg text-xs sm:text-sm">
                   <a
                     href={SITE_CONFIG.contact.whatsapp}
                     target="_blank"
@@ -139,7 +139,7 @@ export default function ServicesPage() {
                     className="flex items-center gap-2"
                   >
                     <PhoneCall className="w-4 h-4" />
-                    Klaim Konsultasi & Penawaran Khusus
+                    Konsultasi Penawaran Khusus
                   </a>
                 </Button>
               </div>

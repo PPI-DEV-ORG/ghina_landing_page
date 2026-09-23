@@ -78,11 +78,12 @@ export function GlobalSearchBar() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2.5 px-3.5 py-2 rounded-lg border border-[#E2ECE8] bg-[#F0F5F4]/70 hover:bg-[#F0F5F4] hover:border-[#70CB97]/60 text-[#5A6B66] hover:text-[#111827] text-xs font-medium transition-all group max-w-[210px] w-full"
+        className="flex items-center justify-center md:justify-start gap-2.5 h-9 w-9 md:h-9 md:w-[200px] p-2 md:px-3.5 md:py-2 rounded-lg border border-[#E2ECE8] bg-[#F0F5F4]/80 hover:bg-[#F0F5F4] hover:border-[#70CB97]/60 text-[#5A6B66] hover:text-[#111827] text-xs font-medium transition-all group shrink-0"
+        aria-label="Cari produk atau artikel"
       >
-        <Search className="w-3.5 h-3.5 text-[#426A5A] group-hover:text-[#152E26] transition-colors shrink-0" />
-        <span className="truncate">Cari paket / blog...</span>
-        <kbd className="hidden sm:inline-block ml-auto text-[10px] px-1.5 py-0.5 rounded bg-white border border-[#E2ECE8] font-mono text-gray-500">
+        <Search className="w-4 h-4 md:w-3.5 md:h-3.5 text-[#426A5A] group-hover:text-[#152E26] transition-colors shrink-0" />
+        <span className="hidden md:inline truncate">Cari paket / blog...</span>
+        <kbd className="hidden lg:inline-block ml-auto text-[10px] px-1.5 py-0.5 rounded bg-white border border-[#E2ECE8] font-mono text-gray-500">
           ⌘K
         </kbd>
       </button>

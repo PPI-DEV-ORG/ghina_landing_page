@@ -52,13 +52,13 @@ export function CatalogPreviewSection({ products }: CatalogPreviewSectionProps) 
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-xs text-brand-textMuted mb-3">
+        <div className="mt-12 text-center px-2 flex flex-col items-center justify-center">
+          <p className="text-xs text-[#5A6B66] mb-3">
             Butuh kustomisasi jumlah kamera atau spesifikasi khusus gedung/pabrik?
           </p>
-          <Button asChild variant="secondary" size="lg" className="font-bold">
+          <Button asChild variant="secondary" size="lg" className="font-bold h-11 px-6 rounded-lg text-xs sm:text-sm">
             <Link href="/contact">
-              Konsultasikan Rencana Pemasangan Anda
+              Konsultasi Kebutuhan Khusus
             </Link>
           </Button>
         </div>

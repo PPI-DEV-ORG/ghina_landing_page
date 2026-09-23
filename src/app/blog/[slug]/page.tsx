@@ -107,35 +107,42 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </p>
 
         {/* Content Body */}
-        <div className="prose max-w-none text-foreground text-sm sm:text-base leading-relaxed space-y-5">
-          {post.content.split("\n\n").map((paragraph, index) => {
-            if (paragraph.startsWith("### ")) {
+        {post.content.includes("<") && post.content.includes(">") ? (
+          <div
+            className="prose max-w-none text-foreground text-sm sm:text-base leading-relaxed space-y-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_blockquote]:border-l-4 [&_blockquote]:border-secondary [&_blockquote]:pl-4 [&_blockquote]:italic [&_a]:text-secondary [&_a]:underline"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        ) : (
+          <div className="prose max-w-none text-foreground text-sm sm:text-base leading-relaxed space-y-5">
+            {post.content.split("\n\n").map((paragraph, index) => {
+              if (paragraph.startsWith("### ")) {
+                return (
+                  <h3
+                    key={index}
+                    className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-3"
+                  >
+                    {paragraph.replace("### ", "")}
+                  </h3>
+                );
+              }
+              if (paragraph.startsWith("- ")) {
+                const items = paragraph.split("\n- ").map((item) => item.replace("- ", ""));
+                return (
+                  <ul key={index} className="list-disc pl-5 space-y-1.5 text-brand-textPrimary">
+                    {items.map((it, i) => (
+                      <li key={i}>{it}</li>
+                    ))}
+                  </ul>
+                );
+              }
               return (
-                <h3
-                  key={index}
-                  className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-3"
-                >
-                  {paragraph.replace("### ", "")}
-                </h3>
+                <p key={index} className="text-gray-700">
+                  {paragraph}
+                </p>
               );
-            }
-            if (paragraph.startsWith("- ")) {
-              const items = paragraph.split("\n- ").map((item) => item.replace("- ", ""));
-              return (
-                <ul key={index} className="list-disc pl-5 space-y-1.5 text-brand-textPrimary">
-                  {items.map((it, i) => (
-                    <li key={i}>{it}</li>
-                  ))}
-                </ul>
-              );
-            }
-            return (
-              <p key={index} className="text-gray-700">
-                {paragraph}
-              </p>
-            );
-          })}
-        </div>
+            })}
+          </div>
+        )}
 
         {/* Consultation Callout Box */}
         <div className="my-14 p-6 sm:p-8 rounded-2xl bg-secondary-bg border border-border flex flex-col sm:flex-row items-center justify-between gap-6">

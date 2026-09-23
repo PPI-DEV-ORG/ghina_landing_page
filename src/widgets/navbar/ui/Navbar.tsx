@@ -24,7 +24,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+      className={`sticky top-0 z-40 w-full max-w-full transition-all duration-200 ${
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#E2ECE8]"
           : "bg-white border-b border-[#E2ECE8]"
@@ -33,8 +33,8 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Brand Identity */}
-          <Link href="/" className="flex items-center gap-3.5 group">
-            <div className="relative h-11 w-11 rounded-lg overflow-hidden flex items-center justify-center shrink-0 border border-[#E2ECE8] bg-white shadow-xs group-hover:border-[#70CB97] transition-colors">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink min-w-0 pr-1">
+            <div className="relative h-9 w-9 sm:h-11 sm:w-11 rounded-lg overflow-hidden flex items-center justify-center shrink-0 border border-[#E2ECE8] bg-white shadow-xs group-hover:border-[#70CB97] transition-colors">
               <Image
                 src="/images/logo-light.jpg"
                 alt="Logo PT Ghina Multi Prima"
@@ -44,11 +44,11 @@ export function Navbar() {
                 priority
               />
             </div>
-            <div>
-              <span className="text-base sm:text-lg font-extrabold tracking-tight text-[#111827] block leading-tight">
+            <div className="min-w-0 flex flex-col justify-center">
+              <span className="text-sm sm:text-base lg:text-lg font-extrabold tracking-tight text-[#111827] block leading-tight whitespace-nowrap">
                 GHINA <span className="text-[#426A5A] font-bold">MULTI PRIMA</span>
               </span>
-              <span className="text-[11px] font-semibold text-[#5A6B66] tracking-wide block">
+              <span className="text-[10px] sm:text-[11px] font-semibold text-[#5A6B66] tracking-wide block leading-tight whitespace-nowrap">
                 Solusi CCTV &amp; SAMTEK VMS
               </span>
             </div>
@@ -93,15 +93,15 @@ export function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 lg:hidden">
+          {/* Mobile Right Actions */}
+          <div className="flex items-center gap-1.5 lg:hidden shrink-0">
             <GlobalSearchBar />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-700 hover:bg-[#F0F5F4] transition-colors"
+              className="h-9 w-9 flex items-center justify-center rounded-lg text-gray-700 hover:bg-[#F0F5F4] transition-colors border border-transparent hover:border-[#E2ECE8]"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -138,7 +138,7 @@ export function Navbar() {
                 className="flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" />
-                WhatsApp (0877-4448-8999)
+                Chat via WhatsApp
               </a>
             </Button>
             <Link
