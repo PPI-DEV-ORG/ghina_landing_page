@@ -264,7 +264,6 @@ export function BlogEditorModal({
                 onChange={(e) =>
                   setFormData((p) => ({ ...p, image: e.target.value }))
                 }
-                placeholder="/images/places/warehouse.jpg"
                 placeholder="/images/blog/nama-file.jpg atau klik Upload dari PC"
               />
               <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 bg-secondary-bg hover:bg-border text-secondary rounded-lg text-xs font-semibold shrink-0 border border-border">
@@ -277,7 +276,6 @@ export function BlogEditorModal({
                 Upload dari PC
                 <input
                   type="file"
-                  accept="image/*"
                   accept=".png,.jpg,.jpeg,.webm,image/png,image/jpeg,video/webm"
                   className="hidden"
                   onChange={handleFileUpload}
