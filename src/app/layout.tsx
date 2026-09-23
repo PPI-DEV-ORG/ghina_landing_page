@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-// @ts-expect-error CSS is processed by Next.js and has no TypeScript declarations.
 import "./globals.css";
 import { Navbar } from "@/widgets/navbar/ui/Navbar";
 import { Footer } from "@/widgets/footer/ui/Footer";
