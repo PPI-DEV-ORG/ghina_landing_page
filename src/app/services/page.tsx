@@ -17,7 +17,7 @@ import {
 import { SITE_CONFIG } from "@/shared/config/site";
 
 export const metadata = {
-  title: "Katalog Paket CCTV & Jasa Pasang — PT Ghina Multi Prima",
+  title: "Katalog Paket CCTV & Jasa Pasang — CV. Ghina Multiprima",
   description:
     "Pilihan paket kamera CCTV Home Office, Security Office, Smart Baby Cam (1-8 kamera), dan SAMTEK AI Smartbox dengan garansi 1 tahun dan gratis training.",
 };
@@ -89,7 +89,7 @@ export default function ServicesPage() {
               </h2>
 
               <p className="text-sm sm:text-base text-brand-textMuted leading-relaxed">
-                Kami memahami bahwa investasi keamanan harus memberikan rasa tenang jangka panjang. Oleh karena itu, setiap pembelian paket CCTV dan perangkat di PT Ghina Multi Prima dilindungi garansi resmi sparepart 1 tahun dengan dukungan teknisi sigap.
+                Kami memahami bahwa investasi keamanan harus memberikan rasa tenang jangka panjang. Oleh karena itu, setiap pembelian paket CCTV dan perangkat di CV. Ghina Multiprima dilindungi garansi resmi sparepart 1 tahun dengan dukungan teknisi sigap.
               </p>
 
               <div className="space-y-4 pt-2">

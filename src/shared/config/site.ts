@@ -1,13 +1,13 @@
 export const SITE_CONFIG = {
-  name: "PT Ghina Multi Prima",
-  shortName: "Ghina Multi Prima",
+  name: "CV. Ghina Multiprima",
+  shortName: "Ghina Multiprima",
   tagline: "Solusi CCTV Profesional, Jasa Pemasangan & Integrasi SAMTEK VMS Cerdas",
   description:
     "Pusat pengadaan kamera CCTV, jasa instalasi berpengalaman, maintenance sistem keamanan, dan distributor resmi SAMTEK VMS untuk perkantoran, industri, dan hunian.",
   contact: {
     phone: "087744488999",
     phoneDisplay: "0877-4448-8999",
-    whatsapp: "https://wa.me/6287744488999?text=Halo%20PT%20Ghina%20Multi%20Prima,%20saya%20tertarik%20dengan%20produk%20dan%20jasa%20CCTV",
+    whatsapp: "https://wa.me/6287744488999?text=Halo%20CV.%20Ghina%20Multiprima,%20saya%20tertarik%20dengan%20produk%20dan%20jasa%20CCTV",
     email: "contact@samtek.id",
     address:
       "Jl. Bintara Jaya VIII, RT.008/RW.009, Bintara Jaya, Kec. Bekasi Barat, Jawa Barat 17136",

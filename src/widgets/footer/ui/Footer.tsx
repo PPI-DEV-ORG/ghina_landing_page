@@ -22,14 +22,14 @@ export function Footer() {
               <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border border-white/15 shadow-sm">
                 <Image
                   src="/images/logo-dark.png"
-                  alt="Logo PT Ghina Multi Prima"
+                  alt="Logo CV. Ghina Multiprima"
                   fill
                   className="object-cover"
                 />
               </div>
               <div>
                 <span className="text-lg font-extrabold tracking-tight text-white block">
-                  GHINA <span className="text-primary">MULTI PRIMA</span>
+                  GHINA <span className="text-primary">MULTIPRIMA</span>
                 </span>
                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block">
                   Security &amp; Surveillance Solutions
@@ -41,7 +41,7 @@ export function Footer() {
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-primary font-medium">
               <CheckCircle2 className="w-4 h-4" />
-              <span>Berpengalaman sejak 2019</span>
+              <span>Berpengalaman sejak 2013</span>
             </div>
           </div>
 
@@ -188,7 +188,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <div>
-            © {new Date().getFullYear()} PT Ghina Multi Prima. Seluruh hak cipta dilindungi.
+            © {new Date().getFullYear()} CV. Ghina Multiprima. Seluruh hak cipta dilindungi.
           </div>
           <div className="flex items-center gap-6">
             <Link href="/services" className="hover:text-white transition-colors">

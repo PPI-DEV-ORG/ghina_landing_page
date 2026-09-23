@@ -32,13 +32,13 @@ export async function POST(req: NextRequest) {
       });
 
       await transporter.sendMail({
-        from: `"PT Ghina Web Inquiry" <${user}>`,
+        from: `"CV. Ghina Web Inquiry" <${user}>`,
         to: receiver,
         subject: `[Web Inquiry] ${subject || "Permintaan Penawaran CCTV"} - ${name}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">
             <h2 style="color: #426A5A; margin-top: 0;">Permintaan Penawaran Baru</h2>
-            <p>Ada pesan masuk dari formulir website PT Ghina Multi Prima:</p>
+            <p>Ada pesan masuk dari formulir website CV. Ghina Multiprima:</p>
             <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
               <tr>
                 <td style="padding: 8px; font-weight: bold; width: 140px; border-bottom: 1px solid #edf2f7;">Nama:</td>
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
               </tr>
             </table>
             <div style="margin-top: 24px; font-size: 12px; color: #718096; border-top: 1px solid #e2e8f0; padding-top: 12px;">
-              Formulir Website PT Ghina Multi Prima
+              Formulir Website CV. Ghina Multiprima
             </div>
           </div>
         `,

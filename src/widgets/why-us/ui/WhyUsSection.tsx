@@ -44,7 +44,7 @@ export function WhyUsSection() {
             Keamanan Adalah Kunci Ketenangan Bisnis &amp; Hunian
           </h2>
           <p className="text-sm sm:text-base text-[#5A6B66] mt-3 leading-relaxed">
-            Empat prinsip utama yang mendasari setiap pekerjaan instalasi dan pengadaan oleh tim PT Ghina Multi Prima.
+            Empat prinsip utama yang mendasari setiap pekerjaan instalasi dan pengadaan oleh tim CV. Ghina Multiprima.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export function WhyUsSection() {
 
               <div className="pt-6 mt-6 border-t border-[#E2ECE8]/80 flex items-center gap-1.5 text-xs text-[#152E26] font-semibold">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#70CB97]" />
-                <span>Standar Ghina Multi Prima</span>
+                <span>Standar Ghina Multiprima</span>
               </div>
             </div>
           ))}

@@ -32,10 +32,10 @@ export function generateMetadata({ params }: BlogPostPageProps) {
   const blogs = getBlogs();
   const post = blogs.find((b) => b.slug === params.slug);
   if (!post) {
-    return { title: "Artikel Tidak Ditemukan — PT Ghina Multi Prima" };
+    return { title: "Artikel Tidak Ditemukan — CV. Ghina Multiprima" };
   }
   return {
-    title: `${post.title} — PT Ghina Multi Prima`,
+    title: `${post.title} — CV. Ghina Multiprima`,
     description: post.excerpt,
   };
 }
@@ -151,7 +151,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               Butuh Konsultasi Pemasangan CCTV untuk Fasilitas Anda?
             </h4>
             <p className="text-xs sm:text-sm text-brand-textMuted">
-              Dapatkan survei gratis dan rekomendasi teknis terbaik dari PT Ghina Multi Prima.
+              Dapatkan survei gratis dan rekomendasi teknis terbaik dari CV. Ghina Multiprima.
             </p>
           </div>
           <Button asChild variant="whatsapp" className="shrink-0 font-bold">

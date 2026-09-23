@@ -8,6 +8,16 @@ function verifyPassword(req: NextRequest): boolean {
   return authHeader === adminPass;
 }
 
+const ALLOWED_EXTENSIONS = [".png", ".jpg", ".jpeg", ".webm"];
+const ALLOWED_MIME_TYPES = [
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+  "video/webm",
+  "image/webm",
+];
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+
 export async function POST(req: NextRequest) {
   if (!verifyPassword(req)) {
     return NextResponse.json(
@@ -27,28 +37,56 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 1. Validasi Ukuran File (< 2 MB)
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json(
+        {
+          message: `Ukuran file terlalu besar (${(file.size / (1024 * 1024)).toFixed(2)} MB). Maksimal ukuran file adalah 2 MB.`,
+        },
+        { status: 400 }
+      );
+    }
+
+    // 2. Validasi Ekstensi dan Tipe MIME (png, jpg, jpeg, webm)
+    const ext = path.extname(file.name).toLowerCase();
+    const mimeType = file.type.toLowerCase();
+
+    const isValidExt = ALLOWED_EXTENSIONS.includes(ext);
+    const isValidMime = ALLOWED_MIME_TYPES.includes(mimeType);
+
+    if (!isValidExt || !isValidMime) {
+      return NextResponse.json(
+        {
+          message:
+            "Format file tidak didukung. Hanya file PNG, JPG, JPEG, dan WEBM yang diperbolehkan.",
+        },
+        { status: 400 }
+      );
+    }
+
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
+    // Simpan ke direktori public/images/blog/
+    const blogDir = path.join(process.cwd(), "public", "images", "blog");
+    if (!fs.existsSync(blogDir)) {
+      fs.mkdirSync(blogDir, { recursive: true });
     }
 
-    // Clean safe filename
-    const ext = path.extname(file.name) || ".jpg";
+    // Buat nama file yang aman dan unik
     const baseName = path
       .basename(file.name, ext)
       .toLowerCase()
-      .replace(/[^a-z0-9]/g, "-");
+      .replace(/[^a-z0-9]/g, "-")
+      .slice(0, 40);
     const filename = `${baseName}-${Date.now()}${ext}`;
-    const filePath = path.join(uploadsDir, filename);
+    const filePath = path.join(blogDir, filename);
 
     fs.writeFileSync(filePath, buffer);
 
     return NextResponse.json({
-      message: "Gambar berhasil diunggah",
-      url: `/uploads/${filename}`,
+      message: "Media berhasil diunggah",
+      url: `/images/blog/${filename}`,
     });
   } catch (error: any) {
     console.error("Upload error:", error);
@@ -58,4 +96,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-

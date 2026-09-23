@@ -11,7 +11,7 @@ export function HeroSection() {
       {/* Background Image: public/images/cctv.jpg */}
       <Image
         src="/images/cctv.jpg"
-        alt="Sistem Pengawasan CCTV PT Ghina Multi Prima"
+        alt="Sistem Pengawasan CCTV CV. Ghina Multiprima"
         fill
         priority
         className="object-cover object-center"

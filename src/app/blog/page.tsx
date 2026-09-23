@@ -4,7 +4,7 @@ import { BlogListClient } from "./BlogListClient";
 import { BookOpen } from "lucide-react";
 
 export const metadata = {
-  title: "Blog & Wawasan Keamanan — PT Ghina Multi Prima",
+  title: "Blog & Wawasan Keamanan — CV. Ghina Multiprima",
   description:
     "Artikel, panduan instalasi CCTV, tips pemeliharaan kamera pengawas, dan pemanfaatan teknologi AI surveillance SAMTEK VMS.",
 };

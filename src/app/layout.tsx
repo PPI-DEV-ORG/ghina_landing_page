@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords: [
     "CCTV",
     "Jasa Pasang CCTV",
-    "PT Ghina Multi Prima",
+    "CV. Ghina Multiprima",
     "SAMTEK VMS",
     "Kamera CCTV Indoor Outdoor",
     "Maintenance CCTV Bekasi Jakarta",

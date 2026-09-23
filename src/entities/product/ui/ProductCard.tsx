@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const waUrl = `${SITE_CONFIG.contact.whatsapp}&text=${encodeURIComponent(
-    `Halo PT Ghina Multi Prima, saya ingin konsultasi dan pemesanan: ${product.name} (${product.price})`
+    `Halo CV. Ghina Multiprima, saya ingin konsultasi dan pemesanan: ${product.name} (${product.price})`
   )}`;
 
   return (

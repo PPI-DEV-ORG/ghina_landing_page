@@ -72,7 +72,7 @@ export function ContactForm() {
         Kirim Pesan / Permintaan Penawaran
       </h3>
       <p className="text-sm text-brand-textMuted mb-6">
-        Tim ahli PT Ghina Multi Prima akan merespons pertanyaan dan memberikan solusi spesifikasi kebutuhan Anda dalam 1x24 jam.
+        Tim ahli CV. Ghina Multiprima akan merespons pertanyaan dan memberikan solusi spesifikasi kebutuhan Anda dalam 1x24 jam.
       </p>
 
       {status === "success" && (

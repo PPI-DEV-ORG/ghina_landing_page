@@ -29,7 +29,7 @@ export function ContactCtaSection() {
               </h2>
 
               <p className="text-sm sm:text-base text-[#5A6B66] leading-relaxed">
-                Hubungi tim teknis PT Ghina Multi Prima sekarang. Kami siap membantu survei lokasi untuk menentukan titik pasang kamera optimal, penarikan jalur kabel efisien, serta simulasi demo software SAMTEK VMS.
+                Hubungi tim teknis CV. Ghina Multiprima sekarang. Kami siap membantu survei lokasi untuk menentukan titik pasang kamera optimal, penarikan jalur kabel efisien, serta simulasi demo software SAMTEK VMS.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row gap-3">

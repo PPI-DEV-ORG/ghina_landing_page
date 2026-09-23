@@ -13,9 +13,9 @@ import {
 import { Button } from "@/shared/ui/button";
 
 export const metadata = {
-  title: "Hubungi Kami — PT Ghina Multi Prima",
+  title: "Hubungi Kami — CV. Ghina Multiprima",
   description:
-    "Konsultasikan kebutuhan pemasangan CCTV, pengadaan perangkat kamera, dan lisensi SAMTEK VMS bersama tim teknis PT Ghina Multi Prima.",
+    "Konsultasikan kebutuhan pemasangan CCTV, pengadaan perangkat kamera, dan lisensi SAMTEK VMS bersama tim teknis CV. Ghina Multiprima.",
 };
 
 export default function ContactPage() {
@@ -29,7 +29,7 @@ export default function ContactPage() {
             Layanan Pelanggan & Konsultasi
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight">
-            Hubungi PT Ghina Multi Prima
+            Hubungi CV. Ghina Multiprima
           </h1>
           <p className="text-base sm:text-lg text-brand-textMuted mt-4 leading-relaxed">
             Punya pertanyaan mengenai paket CCTV, instalasi perkantoran/pabrik, atau integrasi SAMTEK VMS? Kirimkan pesan atau hubungi kami langsung.
@@ -54,7 +54,7 @@ export default function ContactPage() {
                     Kantor Pusat & Operasional
                   </span>
                   <h3 className="text-xl font-extrabold text-foreground mt-1">
-                    PT Ghina Multi Prima
+                    CV. Ghina Multiprima
                   </h3>
                   <p className="text-xs text-brand-textMuted mt-1">
                     Spesialis CCTV, Jasa Pasang & Distributor Resmi SAMTEK VMS
@@ -158,7 +158,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Peta Lokasi PT Ghina Multi Prima"
+                  title="Peta Lokasi CV. Ghina Multiprima"
                 />
               </div>
             </div>

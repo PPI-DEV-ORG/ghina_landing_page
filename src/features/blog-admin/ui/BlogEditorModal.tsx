@@ -31,7 +31,7 @@ export function BlogEditorModal({
     category: "Keamanan & Tips",
     excerpt: "",
     content: "",
-    author: "Tim PT Ghina Multi Prima",
+    author: "Tim CV. Ghina Multiprima",
     image: "/images/places/warehouse.jpg",
     readTime: "5 min baca",
   });
@@ -50,7 +50,7 @@ export function BlogEditorModal({
         category: "Keamanan & Tips",
         excerpt: "",
         content: "",
-        author: "Tim PT Ghina Multi Prima",
+        author: "Tim CV. Ghina Multiprima",
         image: "/images/places/warehouse.jpg",
         readTime: "5 min baca",
       });
@@ -77,6 +77,30 @@ export function BlogEditorModal({
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // Reset input agar file yang sama bisa dipilih ulang jika perlu
+    e.target.value = "";
+
+    // 1. Validasi Ukuran File (< 2 MB)
+    const MAX_SIZE = 2 * 1024 * 1024;
+    if (file.size > MAX_SIZE) {
+      setError(
+        `Ukuran file terlalu besar (${(file.size / (1024 * 1024)).toFixed(2)} MB). Maksimal ukuran file adalah 2 MB.`
+      );
+      return;
+    }
+
+    // 2. Validasi Format File (PNG, JPG, JPEG, WEBM)
+    const allowedExtensions = [".png", ".jpg", ".jpeg", ".webm"];
+    const ext = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+    const allowedMimes = ["image/png", "image/jpeg", "image/jpg", "video/webm", "image/webm"];
+
+    if (!allowedExtensions.includes(ext) && !allowedMimes.includes(file.type.toLowerCase())) {
+      setError(
+        "Format file tidak didukung. Hanya file PNG, JPG, JPEG, dan WEBM yang diperbolehkan."
+      );
+      return;
+    }
+
     setUploading(true);
     setError("");
 
@@ -94,12 +118,12 @@ export function BlogEditorModal({
 
       const result = await res.json();
       if (!res.ok) {
-        throw new Error(result.message || "Gagal mengupload gambar.");
+        throw new Error(result.message || "Gagal mengupload file media.");
       }
 
       setFormData((prev) => ({ ...prev, image: result.url }));
     } catch (err: any) {
-      setError(err.message || "Gagal upload gambar.");
+      setError(err.message || "Gagal upload file media.");
     } finally {
       setUploading(false);
     }
@@ -205,7 +229,7 @@ export function BlogEditorModal({
                 onChange={(e) =>
                   setFormData((p) => ({ ...p, author: e.target.value }))
                 }
-                placeholder="Tim PT Ghina Multi Prima"
+                placeholder="Tim CV. Ghina Multiprima"
               />
             </div>
             <div>
@@ -226,6 +250,14 @@ export function BlogEditorModal({
             <label className="block text-xs font-semibold text-secondary mb-1">
               Gambar Artikel (Path Lokal atau Upload File)
             </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-xs font-semibold text-secondary">
+                Media Gambar / Video Header Artikel *
+              </label>
+              <span className="text-[11px] text-brand-textMuted">
+                Format: PNG, JPG, JPEG, WEBM (Maks. 2 MB)
+              </span>
+            </div>
             <div className="flex gap-2 items-center">
               <Input
                 value={formData.image || ""}
@@ -233,6 +265,7 @@ export function BlogEditorModal({
                   setFormData((p) => ({ ...p, image: e.target.value }))
                 }
                 placeholder="/images/places/warehouse.jpg"
+                placeholder="/images/blog/nama-file.jpg atau klik Upload dari PC"
               />
               <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 bg-secondary-bg hover:bg-border text-secondary rounded-lg text-xs font-semibold shrink-0 border border-border">
                 {uploading ? (
@@ -241,9 +274,11 @@ export function BlogEditorModal({
                   <Upload className="w-4 h-4" />
                 )}
                 Upload
+                Upload dari PC
                 <input
                   type="file"
                   accept="image/*"
+                  accept=".png,.jpg,.jpeg,.webm,image/png,image/jpeg,video/webm"
                   className="hidden"
                   onChange={handleFileUpload}
                   disabled={uploading}
@@ -253,6 +288,7 @@ export function BlogEditorModal({
             {formData.image && (
               <p className="text-[11px] text-brand-textMuted mt-1">
                 Path gambar tersimpan: <span className="font-mono">{formData.image}</span>
+                Lokasi file tersimpan: <span className="font-mono text-emerald-700 font-semibold">{formData.image}</span>
               </p>
             )}
           </div>

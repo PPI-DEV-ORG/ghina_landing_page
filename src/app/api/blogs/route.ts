@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 import { getBlogs, saveBlogs } from "@/shared/lib/storage";
 import { BlogPost } from "@/shared/types";
 
@@ -38,7 +40,7 @@ export async function POST(req: NextRequest) {
       excerpt: body.excerpt || "",
       content: body.content || "",
       category: body.category || "Keamanan & Tips",
-      author: body.author || "Tim PT Ghina Multi Prima",
+      author: body.author || "Tim CV. Ghina Multiprima",
       date: new Date().toISOString().split("T")[0],
       image: body.image || "/images/places/warehouse.jpg",
       readTime: body.readTime || "5 min baca",
@@ -118,19 +120,49 @@ export async function DELETE(req: NextRequest) {
     }
 
     let blogs = getBlogs();
-    const initialLen = blogs.length;
-    blogs = blogs.filter((b) => b.id !== id);
+    const postToDelete = blogs.find((b) => b.id === id);
 
-    if (blogs.length === initialLen) {
+    if (!postToDelete) {
       return NextResponse.json(
         { message: "Artikel tidak ditemukan" },
         { status: 404 }
       );
     }
 
+    // Hapus file media/gambar jika tersimpan di public folder
+    if (postToDelete.image) {
+      try {
+        let rawPath = postToDelete.image.trim();
+        // Buang query string atau hash jika ada
+        rawPath = rawPath.split("?")[0].split("#")[0];
+
+        // Pastikan hanya menghapus file yang ada di folder images/blog atau uploads
+        const isBlogImage =
+          rawPath.startsWith("/images/blog/") ||
+          rawPath.startsWith("images/blog/") ||
+          rawPath.startsWith("/uploads/") ||
+          rawPath.startsWith("uploads/");
+
+        if (isBlogImage) {
+          const cleanRelativePath = rawPath.replace(/^\/+/, "");
+          const fullLocalPath = path.join(process.cwd(), "public", cleanRelativePath);
+
+          if (fs.existsSync(fullLocalPath)) {
+            fs.unlinkSync(fullLocalPath);
+            console.log(`[Blog Delete] Berhasil menghapus file: ${fullLocalPath}`);
+          }
+        }
+      } catch (fileErr) {
+        console.error("Gagal menghapus file gambar artikel:", fileErr);
+      }
+    }
+
+    blogs = blogs.filter((b) => b.id !== id);
     saveBlogs(blogs);
 
-    return NextResponse.json({ message: "Artikel berhasil dihapus" });
+    return NextResponse.json({
+      message: "Artikel dan gambarnya berhasil dihapus",
+    });
   } catch (error: any) {
     return NextResponse.json(
       { message: error.message || "Gagal menghapus artikel" },
@@ -138,4 +170,3 @@ export async function DELETE(req: NextRequest) {
     );
   }
 }
-

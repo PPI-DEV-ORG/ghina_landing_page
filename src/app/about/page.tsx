@@ -15,14 +15,14 @@ import {
 import { SITE_CONFIG } from "@/shared/config/site";
 
 export const metadata = {
-  title: "Tentang Kami — PT Ghina Multi Prima",
+  title: "Tentang Kami — CV. Ghina Multiprima",
   description:
-    "Profil PT Ghina Multi Prima, perusahaan solusi pengawasan CCTV, jasa instalasi andal, dan distributor SAMTEK VMS terpercaya sejak 2019.",
+    "Profil CV. Ghina Multiprima, perusahaan solusi pengawasan CCTV, jasa instalasi andal, dan distributor SAMTEK VMS terpercaya sejak 2013.",
 };
 
 export default function AboutPage() {
   const achievements = [
-    { label: "Tahun Berdiri", value: "2019", icon: Building2 },
+    { label: "Tahun Berdiri", value: "2013", icon: Building2 },
     { label: "Titik CCTV Terpasang", value: "3.500+", icon: Camera },
     { label: "Proyek Selesai", value: "450+", icon: Award },
     { label: "Klien & Mitra Korporat", value: "120+", icon: Users },
@@ -40,7 +40,7 @@ export default function AboutPage() {
       name: "Ibu Ratna Dewi",
       role: "Property Manager, Grand View Residence",
       content:
-        "Layanan after sales PT Ghina Multi Prima sangat responsif. Integrasi software SAMTEK VMS mempermudah pemantauan gerbang cluster secara otomatis.",
+        "Layanan after sales CV. Ghina Multiprima sangat responsif. Integrasi software SAMTEK VMS mempermudah pemantauan gerbang cluster secara otomatis.",
       rating: 5,
     },
     {
@@ -118,7 +118,7 @@ export default function AboutPage() {
             Profil Perusahaan
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight">
-            Mengenal Lebih Dekat PT Ghina Multi Prima
+            Mengenal Lebih Dekat CV. Ghina Multiprima
           </h1>
           <p className="text-base sm:text-lg text-brand-textMuted mt-4 leading-relaxed">
             Mitra tepercaya untuk pengadaan sistem keamanan visual, jasa instalasi profesional, dan integrasi software surveillance cerdas di Indonesia.
@@ -136,13 +136,13 @@ export default function AboutPage() {
                 <div className="relative w-28 h-28 mx-auto mb-6">
                   <Image
                     src="/images/logo-dark.png"
-                    alt="Logo PT Ghina Multi Prima"
+                    alt="Logo CV. Ghina Multiprima"
                     fill
                     className="rounded-full object-cover shadow-md"
                   />
                 </div>
                 <h3 className="text-2xl font-extrabold text-foreground">
-                  PT GHINA MULTI PRIMA
+                  CV. GHINA MULTIPRIMA
                 </h3>
                 <p className="text-xs text-secondary font-semibold uppercase tracking-widest mt-1">
                   Surveillance & AI Systems
@@ -150,7 +150,7 @@ export default function AboutPage() {
                 <div className="mt-6 pt-6 border-t border-border/80 text-xs text-brand-textMuted space-y-1">
                   <p>Legalitas Resmi Perusahaan</p>
                   <p className="font-mono text-foreground font-semibold">
-                    Berdiri Sejak Tahun 2019
+                    Berdiri Sejak Tahun 2013
                   </p>
                 </div>
               </div>
@@ -165,10 +165,10 @@ export default function AboutPage() {
                 Solusi Keamanan yang Tumbuh Bersama Perkembangan Teknologi Digital
               </h2>
               <p className="text-sm sm:text-base text-brand-textMuted leading-relaxed">
-                PT Ghina Multi Prima didirikan pada tahun 2019 dengan visi menjadi penyedia sistem keamanan terintegrasi yang andal, transparan, dan berstandar internasional. Berawal dari layanan instalasi CCTV konvensional, kami terus berinovasi menjawab tantangan keamanan modern.
+                CV. Ghina Multiprima didirikan pada tahun 2013 dengan visi menjadi penyedia sistem keamanan terintegrasi yang andal, transparan, dan berstandar internasional. Berawal dari layanan instalasi CCTV konvensional, kami terus berinovasi menjawab tantangan keamanan modern.
               </p>
               <p className="text-sm sm:text-base text-brand-textMuted leading-relaxed">
-                Kini, PT Ghina Multi Prima tidak hanya menyediakan unit kamera CCTV ternama (seperti Hikvision, Dahua, Uniview, Bosch, Axis) dan jasa pemasangan kabel berstandar tinggi, melainkan juga memperluas portofolio sebagai distributor dan integrator resmi <strong>SAMTEK VMS</strong> — sistem manajemen video pintar berbasis Artificial Intelligence.
+                Kini, CV. Ghina Multiprima tidak hanya menyediakan unit kamera CCTV ternama (seperti Hikvision, Dahua, Uniview, Bosch, Axis) dan jasa pemasangan kabel berstandar tinggi, melainkan juga memperluas portofolio sebagai distributor dan integrator resmi <strong>SAMTEK VMS</strong> — sistem manajemen video pintar berbasis Artificial Intelligence.
               </p>
 
               <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-semibold text-tertiary">
@@ -269,7 +269,7 @@ export default function AboutPage() {
               Sertifikasi Resmi Keahlian Teknisi
             </h2>
             <p className="text-sm text-brand-textMuted mt-2">
-              Bukti kompetensi dan keahlian teknis tim PT Ghina Multi Prima yang telah tersertifikasi langsung oleh manufaktur dan principal surveillance kelas dunia.
+              Bukti kompetensi dan keahlian teknis tim CV. Ghina Multiprima yang telah tersertifikasi langsung oleh manufaktur dan principal surveillance kelas dunia.
             </p>
           </div>
 
@@ -312,7 +312,7 @@ export default function AboutPage() {
               Our Talent & Lapangan
             </h2>
             <p className="text-sm text-brand-textMuted mt-2">
-              Dokumentasi implementasi nyata dari teknisi dan engineer PT Ghina Multi Prima di berbagai lokasi instalasi.
+              Dokumentasi implementasi nyata dari teknisi dan engineer CV. Ghina Multiprima di berbagai lokasi instalasi.
             </p>
           </div>
 

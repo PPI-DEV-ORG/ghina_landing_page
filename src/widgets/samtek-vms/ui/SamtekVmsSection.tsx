@@ -50,7 +50,7 @@ export function SamtekVmsSection() {
             </h2>
 
             <p className="text-sm sm:text-base text-[#E6F1F0]/80 leading-relaxed">
-              Selain pengadaan perangkat kamera dan jasa instalasi, PT Ghina Multi Prima menghadirkan <strong className="text-white">SAMTEK VMS</strong>. Software pengawasan generasi baru yang mengubah kamera CCTV konvensional menjadi sistem monitoring cerdas dengan analitik video real-time.
+              Selain pengadaan perangkat kamera dan jasa instalasi, CV. Ghina Multiprima menghadirkan <strong className="text-white">SAMTEK VMS</strong>. Software pengawasan generasi baru yang mengubah kamera CCTV konvensional menjadi sistem monitoring cerdas dengan analitik video real-time.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
@@ -93,7 +93,7 @@ export function SamtekVmsSection() {
                 className="bg-[#0C6791]/15 hover:bg-[#0C6791]/30 text-[#E6F1F0] border-[#0C6791]/60 h-12 px-6 rounded-lg text-xs sm:text-sm backdrop-blur-sm"
               >
                 <a
-                  href="https://wa.me/6287744488999?text=Halo%20Ghina%20Multi%20Prima,%20saya%20ingin%20jadwalkan%20Live%20Demo%20SAMTEK%20VMS"
+                  href="https://wa.me/6287744488999?text=Halo%20CV.%20Ghina%20Multiprima,%20saya%20ingin%20jadwalkan%20Live%20Demo%20SAMTEK%20VMS"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

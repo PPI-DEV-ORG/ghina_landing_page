@@ -4,7 +4,7 @@ import { AdminBlogClient } from "./AdminBlogClient";
 import { Lock } from "lucide-react";
 
 export const metadata = {
-  title: "Admin Portal — Manajemen Blog PT Ghina Multi Prima",
+  title: "Admin Portal — Manajemen Blog CV. Ghina Multiprima",
   robots: {
     index: false,
     follow: false,

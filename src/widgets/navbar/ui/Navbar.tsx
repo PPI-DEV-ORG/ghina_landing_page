@@ -37,7 +37,7 @@ export function Navbar() {
             <div className="relative h-9 w-9 sm:h-11 sm:w-11 rounded-lg overflow-hidden flex items-center justify-center shrink-0 border border-[#E2ECE8] bg-white shadow-xs group-hover:border-[#70CB97] transition-colors">
               <Image
                 src="/images/logo-light.jpg"
-                alt="Logo PT Ghina Multi Prima"
+                alt="Logo CV. Ghina Multiprima"
                 width={44}
                 height={44}
                 className="h-full w-auto object-contain"
@@ -46,7 +46,7 @@ export function Navbar() {
             </div>
             <div className="min-w-0 flex flex-col justify-center">
               <span className="text-sm sm:text-base lg:text-lg font-extrabold tracking-tight text-[#111827] block leading-tight whitespace-nowrap">
-                GHINA <span className="text-[#426A5A] font-bold">MULTI PRIMA</span>
+                GHINA <span className="text-[#426A5A] font-bold">MULTIPRIMA</span>
               </span>
               <span className="text-[10px] sm:text-[11px] font-semibold text-[#5A6B66] tracking-wide block leading-tight whitespace-nowrap">
                 Solusi CCTV &amp; SAMTEK VMS

@@ -196,7 +196,10 @@ export function RichTextEditor({
         {/* Lists */}
         <button
           type="button"
-          onClick={() => exec("insertUnorderedList")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("insertUnorderedList");
+          }}
           title="Bullet List"
           className="p-1.5 rounded hover:bg-white text-gray-700 hover:text-black border border-transparent hover:border-gray-200"
         >
@@ -204,7 +207,10 @@ export function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => exec("insertOrderedList")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("insertOrderedList");
+          }}
           title="Numbered List"
           className="p-1.5 rounded hover:bg-white text-gray-700 hover:text-black border border-transparent hover:border-gray-200"
         >
@@ -212,7 +218,10 @@ export function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => exec("formatBlock", "<blockquote>")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("formatBlock", "<blockquote>");
+          }}
           title="Kutipan / Blockquote"
           className="p-1.5 rounded hover:bg-white text-gray-700 hover:text-black border border-transparent hover:border-gray-200"
         >
@@ -224,7 +233,10 @@ export function RichTextEditor({
         {/* Alignment */}
         <button
           type="button"
-          onClick={() => exec("justifyLeft")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("justifyLeft");
+          }}
           title="Rata Kiri"
           className="p-1.5 rounded hover:bg-white text-gray-700 hover:text-black border border-transparent hover:border-gray-200"
         >
@@ -232,7 +244,10 @@ export function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => exec("justifyCenter")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("justifyCenter");
+          }}
           title="Rata Tengah"
           className="p-1.5 rounded hover:bg-white text-gray-700 hover:text-black border border-transparent hover:border-gray-200"
         >
@@ -240,8 +255,11 @@ export function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => exec("justifyRight")}
-          title="Rata Kiri"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("justifyRight");
+          }}
+          title="Rata Kanan"
           className="p-1.5 rounded hover:bg-white text-gray-700 hover:text-black border border-transparent hover:border-gray-200"
         >
           <AlignRight className="w-4 h-4" />
@@ -260,7 +278,10 @@ export function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => exec("removeFormat")}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            exec("removeFormat");
+          }}
           title="Hapus Format (Clear Formatting)"
           className="p-1.5 rounded hover:bg-white text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200"
         >
@@ -276,7 +297,7 @@ export function RichTextEditor({
         onBlur={handleInput}
         style={{ minHeight }}
         data-placeholder={placeholder}
-        className="p-4 sm:p-5 outline-none text-foreground text-sm sm:text-base leading-relaxed overflow-y-auto max-h-[500px] prose max-w-none focus:outline-none empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400 empty:before:pointer-events-none"
+        className="p-4 sm:p-5 outline-none text-foreground text-sm sm:text-base leading-relaxed overflow-y-auto max-h-[500px] focus:outline-none empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400 empty:before:pointer-events-none [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-2 [&_li]:my-1 [&_blockquote]:border-l-4 [&_blockquote]:border-secondary [&_blockquote]:pl-4 [&_blockquote]:py-1 [&_blockquote]:my-3 [&_blockquote]:italic [&_blockquote]:bg-secondary-bg/40 [&_blockquote]:rounded-r-lg [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-4 [&_h3]:mb-2 [&_a]:text-secondary [&_a]:underline"
       />
     </div>
   );
