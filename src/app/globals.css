@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --secondary-bg: #F0F5F4;
+    --foreground: #111827;
+    --primary: #70CB97;
+    --secondary: #426A5A;
+    --tertiary: #152E26;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Subtle, authentic custom utilities */
+.prose-refined {
+  @apply text-foreground leading-relaxed;
+}
+
+.prose-refined h2,
+.prose-refined h3 {
+  @apply text-foreground font-bold tracking-tight;
+}
+
+.prose-refined p {
+  @apply text-gray-700 leading-relaxed;
+}
+
+/* Card hover with natural human elevation */
+.card-hover-designer {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.card-hover-designer:hover {
+  transform: translateY(-2px);
+}

@@ -1,0 +1,314 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { BlogPost } from "@/shared/types";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/shared/ui/dialog";
+import { Input } from "@/shared/ui/input";
+import { Textarea } from "@/shared/ui/textarea";
+import { Button } from "@/shared/ui/button";
+import { Upload, Loader2, Image as ImageIcon } from "lucide-react";
+
+interface BlogEditorModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  post: BlogPost | null;
+  adminPassword: string;
+  onSaved: () => void;
+}
+
+export function BlogEditorModal({
+  open,
+  onOpenChange,
+  post,
+  adminPassword,
+  onSaved,
+}: BlogEditorModalProps) {
+  const [formData, setFormData] = useState<Partial<BlogPost>>({
+    title: "",
+    slug: "",
+    category: "Keamanan & Tips",
+    excerpt: "",
+    content: "",
+    author: "Tim PT Ghina Multi Prima",
+    image: "/images/places/warehouse.jpg",
+    readTime: "5 min baca",
+  });
+
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (post) {
+      setFormData(post);
+    } else {
+      setFormData({
+        title: "",
+        slug: "",
+        category: "Keamanan & Tips",
+        excerpt: "",
+        content: "",
+        author: "Tim PT Ghina Multi Prima",
+        image: "/images/places/warehouse.jpg",
+        readTime: "5 min baca",
+      });
+    }
+    setError("");
+  }, [post, open]);
+
+  // Auto-generate slug from title if creating new
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const title = e.target.value;
+    if (!post) {
+      const generatedSlug = title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+      setFormData((prev) => ({ ...prev, title, slug: generatedSlug }));
+    } else {
+      setFormData((prev) => ({ ...prev, title }));
+    }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError("");
+
+    const data = new FormData();
+    data.append("file", file);
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        headers: {
+          "x-admin-password": adminPassword,
+        },
+        body: data,
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.message || "Gagal mengupload gambar.");
+      }
+
+      setFormData((prev) => ({ ...prev, image: result.url }));
+    } catch (err: any) {
+      setError(err.message || "Gagal upload gambar.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    setError("");
+
+    try {
+      const isEdit = !!post?.id;
+      const method = isEdit ? "PUT" : "POST";
+
+      const res = await fetch("/api/blogs", {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": adminPassword,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.message || "Gagal menyimpan artikel blog.");
+      }
+
+      onSaved();
+      onOpenChange(false);
+    } catch (err: any) {
+      setError(err.message || "Terjadi kesalahan saat menyimpan.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-bold text-foreground">
+            {post ? "Edit Artikel Blog" : "Tulis Artikel Blog Baru"}
+          </DialogTitle>
+        </DialogHeader>
+
+        {error && (
+          <div className="p-3 text-xs bg-rose-50 text-rose-800 border border-rose-200 rounded-lg">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs font-semibold text-secondary mb-1">
+              Judul Artikel *
+            </label>
+            <Input
+              required
+              value={formData.title || ""}
+              onChange={handleTitleChange}
+              placeholder="Contoh: Tips Merawat Kamera CCTV Agar Berumur Panjang"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-secondary mb-1">
+                Slug URL (otomatis) *
+              </label>
+              <Input
+                required
+                value={formData.slug || ""}
+                onChange={(e) =>
+                  setFormData((p) => ({ ...p, slug: e.target.value }))
+                }
+                placeholder="tips-merawat-kamera-cctv"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-secondary mb-1">
+                Kategori *
+              </label>
+              <Input
+                required
+                value={formData.category || ""}
+                onChange={(e) =>
+                  setFormData((p) => ({ ...p, category: e.target.value }))
+                }
+                placeholder="Keamanan & Tips / Teknologi VMS"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-secondary mb-1">
+                Penulis (Author) *
+              </label>
+              <Input
+                required
+                value={formData.author || ""}
+                onChange={(e) =>
+                  setFormData((p) => ({ ...p, author: e.target.value }))
+                }
+                placeholder="Tim PT Ghina Multi Prima"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-secondary mb-1">
+                Estimasi Waktu Baca
+              </label>
+              <Input
+                value={formData.readTime || ""}
+                onChange={(e) =>
+                  setFormData((p) => ({ ...p, readTime: e.target.value }))
+                }
+                placeholder="5 min baca"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-secondary mb-1">
+              Gambar Artikel (Path Lokal atau Upload File)
+            </label>
+            <div className="flex gap-2 items-center">
+              <Input
+                value={formData.image || ""}
+                onChange={(e) =>
+                  setFormData((p) => ({ ...p, image: e.target.value }))
+                }
+                placeholder="/images/places/warehouse.jpg"
+              />
+              <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 bg-secondary-bg hover:bg-border text-secondary rounded-lg text-xs font-semibold shrink-0 border border-border">
+                {uploading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Upload className="w-4 h-4" />
+                )}
+                Upload
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileUpload}
+                  disabled={uploading}
+                />
+              </label>
+            </div>
+            {formData.image && (
+              <p className="text-[11px] text-brand-textMuted mt-1">
+                Path gambar tersimpan: <span className="font-mono">{formData.image}</span>
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-secondary mb-1">
+              Ringkasan Singkat (Excerpt) *
+            </label>
+            <Textarea
+              required
+              rows={2}
+              value={formData.excerpt || ""}
+              onChange={(e) =>
+                setFormData((p) => ({ ...p, excerpt: e.target.value }))
+              }
+              placeholder="Deskripsi singkat artikel yang tampil di katalog blog..."
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-secondary mb-1">
+              Konten Lengkap Artikel (Mendukung Markdown & Paragraf) *
+            </label>
+            <Textarea
+              required
+              rows={8}
+              value={formData.content || ""}
+              onChange={(e) =>
+                setFormData((p) => ({ ...p, content: e.target.value }))
+              }
+              placeholder="Tuliskan isi artikel lengkap di sini. Gunakan ### untuk sub-judul..."
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 pt-3 border-t border-border">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+            >
+              Batal
+            </Button>
+            <Button type="submit" variant="default" disabled={saving}>
+              {saving ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Menyimpan...
+                </span>
+              ) : post ? (
+                "Simpan Perubahan"
+              ) : (
+                "Publikasikan Artikel"
+              )}
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
