@@ -29,9 +29,9 @@ export function GlobalSearchBar() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  // Fetch search index when modal opens
+  // Fetch search index whenever modal opens to include newly created blogs
   useEffect(() => {
-    if (open && allData.blogs.length === 0) {
+    if (open) {
       setLoading(true);
       fetch("/api/search")
         .then((res) => res.json())
@@ -44,7 +44,7 @@ export function GlobalSearchBar() {
         .catch((err) => console.error("Search fetch error", err))
         .finally(() => setLoading(false));
     }
-  }, [open, allData.blogs.length]);
+  }, [open]);
 
   const filteredResults = useMemo(() => {
     if (!query.trim()) return { blogs: [], products: [] };
@@ -55,9 +55,10 @@ export function GlobalSearchBar() {
         (b) =>
           b.title?.toLowerCase().includes(q) ||
           b.excerpt?.toLowerCase().includes(q) ||
-          b.category?.toLowerCase().includes(q)
+          b.category?.toLowerCase().includes(q) ||
+          b.content?.toLowerCase().includes(q)
       )
-      .slice(0, 4);
+      .slice(0, 6);
 
     const matchedProducts = allData.products
       .filter(
@@ -66,7 +67,7 @@ export function GlobalSearchBar() {
           p.description?.toLowerCase().includes(q) ||
           p.channels?.toLowerCase().includes(q)
       )
-      .slice(0, 4);
+      .slice(0, 6);
 
     return { blogs: matchedBlogs, products: matchedProducts };
   }, [query, allData]);
@@ -98,9 +99,17 @@ export function GlobalSearchBar() {
                 placeholder="Cari CCTV 4 Channel, Home Office, SAMTEK VMS..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="pl-10 pr-4 h-12 text-sm border-0 focus-visible:ring-0 focus-visible:border-0 rounded-none placeholder:text-gray-400"
+                className="pl-10 pr-8 h-12 text-sm border-0 focus-visible:ring-0 focus-visible:border-0 rounded-none placeholder:text-gray-400"
                 autoFocus
               />
+              {query && (
+                <button
+                  onClick={() => setQuery("")}
+                  className="absolute right-10 p-1 text-gray-400 hover:text-gray-600 rounded"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </DialogHeader>
 
@@ -112,7 +121,7 @@ export function GlobalSearchBar() {
               </div>
             ) : !query.trim() ? (
               <div className="py-8 text-center text-sm text-brand-textMuted">
-                Ketik kata kunci untuk mencari paket CCTV, smartbox, atau artikel blog Ghina Multi Prima.
+                Ketik kata kunci untuk mencari paket CCTV, smartbox, atau artikel blog CV. Ghina Multiprima.
               </div>
             ) : totalResults === 0 ? (
               <div className="py-8 text-center text-sm text-brand-textMuted">

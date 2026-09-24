@@ -204,17 +204,59 @@ export function BlogEditorModal({
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-secondary mb-1">
-                Kategori *
-              </label>
-              <Input
-                required
-                value={formData.category || ""}
-                onChange={(e) =>
-                  setFormData((p) => ({ ...p, category: e.target.value }))
-                }
-                placeholder="Keamanan & Tips / Teknologi VMS"
-              />
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs font-semibold text-secondary">
+                  Kategori *
+                </label>
+                {formData.category && !["Keamanan & Tips", "Teknologi & VMS", "Layanan & Maintenance", "Edukasi CCTV", "Berita Perusahaan"].includes(formData.category) && (
+                  <span className="text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium border border-emerald-200">
+                    Kategori Kustom
+                  </span>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <select
+                  value={
+                    ["Keamanan & Tips", "Teknologi & VMS", "Layanan & Maintenance", "Edukasi CCTV", "Berita Perusahaan"].includes(formData.category || "")
+                      ? formData.category
+                      : "__custom__"
+                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "__custom__") {
+                      // Switch to custom: keep current if not empty or initialize empty
+                      if (["Keamanan & Tips", "Teknologi & VMS", "Layanan & Maintenance", "Edukasi CCTV", "Berita Perusahaan"].includes(formData.category || "")) {
+                        setFormData((p) => ({ ...p, category: "" }));
+                      }
+                    } else {
+                      setFormData((p) => ({ ...p, category: val }));
+                    }
+                  }}
+                  className="w-full h-10 px-3 rounded-lg border border-border bg-white text-xs sm:text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary cursor-pointer"
+                >
+                  <option value="Keamanan & Tips">Keamanan &amp; Tips</option>
+                  <option value="Teknologi & VMS">Teknologi &amp; VMS</option>
+                  <option value="Layanan & Maintenance">Layanan &amp; Maintenance</option>
+                  <option value="Edukasi CCTV">Edukasi CCTV</option>
+                  <option value="Berita Perusahaan">Berita Perusahaan</option>
+                  <option value="__custom__">+ Tulis Kategori Sendiri...</option>
+                </select>
+
+                {/* Muncul jika memilih 'Tulis Kategori Sendiri' atau kategori bukan dari opsi default */}
+                {(!["Keamanan & Tips", "Teknologi & VMS", "Layanan & Maintenance", "Edukasi CCTV", "Berita Perusahaan"].includes(formData.category || "")) && (
+                  <Input
+                    required
+                    value={formData.category || ""}
+                    onChange={(e) =>
+                      setFormData((p) => ({ ...p, category: e.target.value }))
+                    }
+                    placeholder="Ketik nama kategori baru di sini..."
+                    className="h-9 text-xs sm:text-sm bg-[#F8FAFA] border-border"
+                    autoFocus
+                  />
+                )}
+              </div>
             </div>
           </div>
 
