@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       category: body.category || "Keamanan & Tips",
       author: body.author || "Tim CV. Ghina Multiprima",
       date: new Date().toISOString().split("T")[0],
-      image: body.image || "/images/places/warehouse.jpg",
+      image: body.image || "",
       readTime: body.readTime || "5 min baca",
     };
 

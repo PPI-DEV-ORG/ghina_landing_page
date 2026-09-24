@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/shared/ui/di
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/textarea";
 import { Button } from "@/shared/ui/button";
-import { Upload, Loader2, Image as ImageIcon } from "lucide-react";
+import { Upload, Loader2, Image as ImageIcon, CheckCircle2, X } from "lucide-react";
 
 import { RichTextEditor } from "./RichTextEditor";
 
@@ -32,17 +32,21 @@ export function BlogEditorModal({
     excerpt: "",
     content: "",
     author: "Tim CV. Ghina Multiprima",
-    image: "/images/places/warehouse.jpg",
+    image: "",
     readTime: "5 min baca",
   });
 
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  // Selected local file to be uploaded upon publishing
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>("");
 
   useEffect(() => {
     if (post) {
       setFormData(post);
+      setPreviewUrl(post.image || "");
+      setSelectedFile(null);
     } else {
       setFormData({
         title: "",
@@ -51,12 +55,23 @@ export function BlogEditorModal({
         excerpt: "",
         content: "",
         author: "Tim CV. Ghina Multiprima",
-        image: "/images/places/warehouse.jpg",
+        image: "",
         readTime: "5 min baca",
       });
+      setPreviewUrl("");
+      setSelectedFile(null);
     }
     setError("");
   }, [post, open]);
+
+  // Clean up object URL when component unmounts or changes
+  useEffect(() => {
+    return () => {
+      if (previewUrl && previewUrl.startsWith("blob:")) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   // Auto-generate slug from title if creating new
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,13 +88,7 @@ export function BlogEditorModal({
     }
   };
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Reset input agar file yang sama bisa dipilih ulang jika perlu
-    e.target.value = "";
-
+  const handleFileSelect = (file: File) => {
     // 1. Validasi Ukuran File (< 2 MB)
     const MAX_SIZE = 2 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
@@ -101,32 +110,30 @@ export function BlogEditorModal({
       return;
     }
 
-    setUploading(true);
     setError("");
+    setSelectedFile(file);
 
-    const data = new FormData();
-    data.append("file", file);
-
-    try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        headers: {
-          "x-admin-password": adminPassword,
-        },
-        body: data,
-      });
-
-      const result = await res.json();
-      if (!res.ok) {
-        throw new Error(result.message || "Gagal mengupload file media.");
-      }
-
-      setFormData((prev) => ({ ...prev, image: result.url }));
-    } catch (err: any) {
-      setError(err.message || "Gagal upload file media.");
-    } finally {
-      setUploading(false);
+    // Create local object URL for preview without uploading to server yet
+    if (previewUrl && previewUrl.startsWith("blob:")) {
+      URL.revokeObjectURL(previewUrl);
     }
+    const localUrl = URL.createObjectURL(file);
+    setPreviewUrl(localUrl);
+    setFormData((prev) => ({ ...prev, image: localUrl }));
+  };
+
+  const handleRemoveImage = () => {
+    if (previewUrl && previewUrl.startsWith("blob:")) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    setSelectedFile(null);
+    setPreviewUrl("");
+    setFormData((prev) => ({ ...prev, image: "" }));
+  };
+
+  const handleCancel = () => {
+    handleRemoveImage();
+    onOpenChange(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -135,6 +142,34 @@ export function BlogEditorModal({
     setError("");
 
     try {
+      let finalImageUrl = formData.image || "";
+
+      // Only upload to server when user actually clicks "Publikasikan Artikel" / "Simpan Perubahan"
+      if (selectedFile) {
+        const uploadData = new FormData();
+        uploadData.append("file", selectedFile);
+
+        const uploadRes = await fetch("/api/upload", {
+          method: "POST",
+          headers: {
+            "x-admin-password": adminPassword,
+          },
+          body: uploadData,
+        });
+
+        const uploadResult = await uploadRes.json();
+        if (!uploadRes.ok) {
+          throw new Error(uploadResult.message || "Gagal mengunggah file gambar ke server.");
+        }
+
+        finalImageUrl = uploadResult.url;
+      }
+
+      const postPayload = {
+        ...formData,
+        image: finalImageUrl,
+      };
+
       const isEdit = !!post?.id;
       const method = isEdit ? "PUT" : "POST";
 
@@ -144,7 +179,7 @@ export function BlogEditorModal({
           "Content-Type": "application/json",
           "x-admin-password": adminPassword,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(postPayload),
       });
 
       const result = await res.json();
@@ -288,48 +323,107 @@ export function BlogEditorModal({
             </div>
           </div>
 
+          {/* File Upload Component */}
           <div>
-            <label className="block text-xs font-semibold text-secondary mb-1">
-              Gambar Artikel (Path Lokal atau Upload File)
-            </label>
-            <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center justify-between mb-1.5">
               <label className="block text-xs font-semibold text-secondary">
-                Media Gambar / Video Header Artikel *
+                Foto / Media Header Blog *
               </label>
               <span className="text-[11px] text-brand-textMuted">
-                Format: PNG, JPG, JPEG, WEBM (Maks. 2 MB)
+                PNG, JPG, JPEG, WEBM (Maks. 2 MB)
               </span>
             </div>
-            <div className="flex gap-2 items-center">
-              <Input
-                value={formData.image || ""}
-                onChange={(e) =>
-                  setFormData((p) => ({ ...p, image: e.target.value }))
-                }
-                placeholder="/images/blog/nama-file.jpg atau klik Upload dari PC"
-              />
-              <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 bg-secondary-bg hover:bg-border text-secondary rounded-lg text-xs font-semibold shrink-0 border border-border">
-                {uploading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Upload className="w-4 h-4" />
-                )}
-                Upload
-                Upload dari PC
+
+            {previewUrl ? (
+              /* Uploaded Media Preview & Status Card */
+              <div className="relative rounded-xl border border-border bg-[#F8FAFA] p-3 sm:p-4 flex flex-col sm:flex-row items-center gap-4">
+                <div className="relative w-full sm:w-28 h-20 rounded-lg overflow-hidden bg-white border border-border shrink-0">
+                  <img
+                    src={previewUrl}
+                    alt="Preview Header"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="flex-1 min-w-0 text-center sm:text-left space-y-1">
+                  <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs font-semibold text-emerald-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>File siap digunakan (lokal)</span>
+                  </div>
+                  <p className="text-[11px] text-brand-textMuted truncate font-mono">
+                    {selectedFile ? selectedFile.name : previewUrl}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-border text-foreground hover:bg-secondary-bg hover:border-secondary/40 transition-colors shadow-xs">
+                    <Upload className="w-3.5 h-3.5 text-secondary" />
+                    Ganti File
+                    <input
+                      type="file"
+                      accept=".png,.jpg,.jpeg,.webm,image/png,image/jpeg,video/webm"
+                      className="hidden"
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          handleFileSelect(e.target.files[0]);
+                          e.target.value = "";
+                        }
+                      }}
+                    />
+                  </label>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRemoveImage}
+                    className="h-8 px-2.5 text-xs text-rose-600 border-rose-200 hover:bg-rose-50 hover:text-rose-700"
+                    title="Hapus media ini"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              /* Drag & Drop Upload Zone */
+              <label
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    handleFileSelect(e.dataTransfer.files[0]);
+                  }
+                }}
+                className="relative flex flex-col items-center justify-center p-6 sm:p-8 rounded-xl border-2 border-dashed border-border bg-[#F8FAFA]/80 hover:bg-white hover:border-secondary hover:shadow-xs transition-all cursor-pointer group text-center"
+              >
+                <div className="w-12 h-12 rounded-full bg-secondary-bg group-hover:bg-[#E2ECE8] flex items-center justify-center mb-3 text-secondary transition-colors">
+                  <Upload className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform" />
+                </div>
+
+                <div className="space-y-1">
+                  <p className="text-sm font-semibold text-foreground">
+                    Klik untuk upload atau drag and drop
+                  </p>
+                  <p className="text-xs text-brand-textMuted">
+                    Mendukung format PNG, JPG, JPEG, atau WEBM (maksimal 2 MB)
+                  </p>
+                </div>
+
                 <input
                   type="file"
                   accept=".png,.jpg,.jpeg,.webm,image/png,image/jpeg,video/webm"
                   className="hidden"
-                  onChange={handleFileUpload}
-                  disabled={uploading}
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      handleFileSelect(e.target.files[0]);
+                      e.target.value = "";
+                    }
+                  }}
                 />
               </label>
-            </div>
-            {formData.image && (
-              <p className="text-[11px] text-brand-textMuted mt-1">
-                Path gambar tersimpan: <span className="font-mono">{formData.image}</span>
-                Lokasi file tersimpan: <span className="font-mono text-emerald-700 font-semibold">{formData.image}</span>
-              </p>
             )}
           </div>
 
@@ -366,7 +460,7 @@ export function BlogEditorModal({
             <Button
               type="button"
               variant="outline"
-              onClick={() => onOpenChange(false)}
+              onClick={handleCancel}
             >
               Batal
             </Button>
