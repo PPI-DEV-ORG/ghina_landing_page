@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/shared/ui/button";
 import { SITE_CONFIG } from "@/shared/config/site";
-import { ShieldCheck, PhoneCall, ArrowRight, Wrench, Cpu, CheckCircle } from "lucide-react";
+import { ShieldCheck, PhoneCall, ArrowRight, Server, Shield, Cpu, Layers } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -24,18 +24,18 @@ export function HeroSection() {
         {/* Subtle Company Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs sm:text-sm font-medium text-white mb-6">
           <span className="w-2 h-2 rounded-full bg-[#70CB97]" />
-          <span>Pengadaan CCTV &amp; Integrator Resmi SAMTEK VMS</span>
+          <span>System Integrator &amp; Konsultan Teknologi Keamanan Sejak 2013</span>
         </div>
 
         {/* Clear, Editorial Heading */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.18] max-w-4xl mx-auto">
-          Solusi CCTV Andal, Jasa Pasang Rapi &amp;{" "}
-          <span className="text-[#70CB97]">Teknologi Cerdas</span>
+          Solusi Terpadu CCTV, Security System &amp;{" "}
+          <span className="text-[#70CB97]">IT Infrastructure</span>
         </h1>
 
         {/* Natural, Professional Subcopy */}
-        <p className="text-base sm:text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto mt-6">
-          Kami menyediakan kamera CCTV bergaransi resmi, pemasangan kabel berstandar industri untuk kantor, pabrik &amp; hunian, serta integrasi <strong>SAMTEK AI VMS</strong> untuk pemantauan cerdas terpusat.
+        <p className="text-base sm:text-lg text-gray-200 leading-relaxed max-w-3xl mx-auto mt-6">
+          CV. Ghina Multiprima melayani perancangan sistem keamanan, integrasi surveillance tingkat lanjut, infrastruktur jaringan data, serta implementasi <strong>SAMTEK Edge AI Solutions</strong> untuk korporasi, manufaktur, dan instansi.
         </p>
 
         {/* Clear Action Buttons */}
@@ -53,7 +53,7 @@ export function HeroSection() {
               className="flex items-center gap-2"
             >
               <PhoneCall className="w-4 h-4" />
-              Konsultasi &amp; Survei Lokasi
+              Konsultasi Proyek &amp; Penawaran
             </a>
           </Button>
 
@@ -61,45 +61,47 @@ export function HeroSection() {
             asChild
             size="lg"
             variant="outline"
-            className="font-semibold bg-white/10 hover:bg-white/15 text-white border-white/20 backdrop-blur-sm text-sm h-12 px-7 rounded-lg"
+            className="font-semibold text-sm h-12 px-7 rounded-lg bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm"
           >
             <Link href="/services" className="flex items-center gap-2">
-              Katalog Paket CCTV
+              Lihat Solusi Layanan
               <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
         </div>
 
-        {/* Authentic Trust Strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-12 max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 text-left">
-            <div className="p-2 rounded-lg bg-[#70CB97]/20 text-[#70CB97] shrink-0">
-              <ShieldCheck className="w-5 h-5" />
+        {/* Key Competence Pillars */}
+        <div className="mt-14 pt-10 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+          <div className="bg-white/5 backdrop-blur-xs rounded-xl p-3.5 border border-white/10">
+            <div className="flex items-center gap-2 text-[#70CB97] mb-1">
+              <Shield className="w-4 h-4" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">CCTV &amp; Security</span>
             </div>
-            <div>
-              <div className="text-sm font-bold text-white leading-tight">Garansi Resmi 1 Tahun</div>
-              <div className="text-xs text-gray-300 mt-0.5">Jaminan unit &amp; sparepart original</div>
-            </div>
+            <p className="text-[11px] text-gray-300">Surveillance, Access Control &amp; Alarm System</p>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 text-left">
-            <div className="p-2 rounded-lg bg-[#70CB97]/20 text-[#70CB97] shrink-0">
-              <Wrench className="w-5 h-5" />
+          <div className="bg-white/5 backdrop-blur-xs rounded-xl p-3.5 border border-white/10">
+            <div className="flex items-center gap-2 text-[#70CB97] mb-1">
+              <Server className="w-4 h-4" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">IT Infrastructure</span>
             </div>
-            <div>
-              <div className="text-sm font-bold text-white leading-tight">Teknisi Berpengalaman</div>
-              <div className="text-xs text-gray-300 mt-0.5">Standar instalasi conduit rapi</div>
-            </div>
+            <p className="text-[11px] text-gray-300">Networking, Server Rack &amp; Cabling System</p>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 text-left">
-            <div className="p-2 rounded-lg bg-[#70CB97]/20 text-[#70CB97] shrink-0">
-              <Cpu className="w-5 h-5" />
+          <div className="bg-white/5 backdrop-blur-xs rounded-xl p-3.5 border border-white/10">
+            <div className="flex items-center gap-2 text-[#70CB97] mb-1">
+              <Cpu className="w-4 h-4" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">AI &amp; Software</span>
             </div>
-            <div>
-              <div className="text-sm font-bold text-white leading-tight">Integrasi SAMTEK VMS</div>
-              <div className="text-xs text-gray-300 mt-0.5">Kompatibel AI video analytics</div>
+            <p className="text-[11px] text-gray-300">SAMTEK Edge Computing &amp; Video Analytics</p>
+          </div>
+
+          <div className="bg-white/5 backdrop-blur-xs rounded-xl p-3.5 border border-white/10">
+            <div className="flex items-center gap-2 text-[#70CB97] mb-1">
+              <Layers className="w-4 h-4" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">M &amp; E Maintenance</span>
             </div>
+            <p className="text-[11px] text-gray-300">Instalasi Mekanikal Elektrikal &amp; SLA Rutin</p>
           </div>
         </div>
       </div>

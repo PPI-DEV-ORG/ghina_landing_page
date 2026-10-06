@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${inter.variable} ${jetbrainsMono.variable} max-w-full overflow-x-hidden`}>
-      <body className="min-h-screen flex flex-col font-sans bg-background text-foreground selection:bg-primary/30 selection:text-tertiary max-w-full w-full overflow-x-clip">
+      <body className={`min-h-screen flex flex-col ${inter.className} font-sans bg-background text-foreground selection:bg-primary/30 selection:text-tertiary max-w-full w-full overflow-x-clip`}>
         <Navbar />
         <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>
         <Footer />
