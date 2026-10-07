@@ -6,8 +6,6 @@ import { SamtekVmsSection } from "@/widgets/samtek-vms/ui/SamtekVmsSection";
 import { GhitechStoreSection } from "@/widgets/ghitech-store/ui/GhitechStoreSection";
 import { BrandPartnersSection } from "@/widgets/brand-partners/ui/BrandPartnersSection";
 import { ClientCarouselSection } from "@/widgets/client-carousel/ui/ClientCarouselSection";
-import { ProjectHighlightsSection } from "@/widgets/project-highlights/ui/ProjectHighlightsSection";
-import { TestimonialsSection } from "@/widgets/testimonials/ui/TestimonialsSection";
 import { ContactCtaSection } from "@/widgets/contact-cta/ui/ContactCtaSection";
 
 export default function HomePage() {
@@ -20,8 +18,6 @@ export default function HomePage() {
       <GhitechStoreSection />
       <BrandPartnersSection />
       <ClientCarouselSection />
-      <ProjectHighlightsSection />
-      <TestimonialsSection />
       <ContactCtaSection />
     </div>
   );
