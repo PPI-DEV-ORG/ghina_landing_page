@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SITE_CONFIG } from "@/shared/config/site";
-import { GlobalSearchBar } from "@/features/search/ui/GlobalSearchBar";
 import { Button } from "@/shared/ui/button";
 import { Menu, X, Phone, Lock } from "lucide-react";
 
@@ -49,7 +48,7 @@ export function Navbar() {
                 GHINA <span className="text-[#426A5A] font-bold">MULTIPRIMA</span>
               </span>
               <span className="text-[10px] sm:text-[11px] font-semibold text-[#5A6B66] tracking-wide block leading-tight whitespace-nowrap">
-                Solusi CCTV &amp; SAMTEK VMS
+                Security &amp; Surveillance Solutions
               </span>
             </div>
           </Link>
@@ -78,8 +77,6 @@ export function Navbar() {
 
           {/* Right Header Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <GlobalSearchBar />
-
             <Button asChild variant="whatsapp" size="sm" className="font-semibold text-xs h-9 px-4 rounded-lg shadow-xs">
               <a
                 href={SITE_CONFIG.contact.whatsapp}
@@ -95,7 +92,6 @@ export function Navbar() {
 
           {/* Mobile Right Actions */}
           <div className="flex items-center gap-1.5 lg:hidden shrink-0">
-            <GlobalSearchBar />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="h-9 w-9 flex items-center justify-center rounded-lg text-gray-700 hover:bg-[#F0F5F4] transition-colors border border-transparent hover:border-[#E2ECE8]"

@@ -148,7 +148,7 @@ export function GlobalSearchBar() {
                               {item.name}
                             </div>
                             <div className="text-xs text-brand-textMuted">
-                              {item.channels} • {item.price}
+                              {item.channels} • Hubungi Admin
                             </div>
                           </div>
                           <Badge variant="brand" className="text-[10px]">

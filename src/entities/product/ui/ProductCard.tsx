@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const waUrl = `${SITE_CONFIG.contact.whatsapp}&text=${encodeURIComponent(
-    `Halo CV. Ghina Multiprima, saya ingin konsultasi dan pemesanan: ${product.name} (${product.price})`
+    `Halo CV. Ghina Multiprima, saya ingin konsultasi dan menanyakan penawaran harga untuk: ${product.name}`
   )}`;
 
   return (
@@ -48,16 +48,6 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
           {product.description}
         </p>
-
-        {/* Price Section */}
-        <div className="mb-4 pb-4 border-b border-[#E2ECE8]">
-          <div className="text-[11px] text-gray-500 font-medium">
-            Mulai dari / Estimasi:
-          </div>
-          <div className="text-2xl font-extrabold text-[#152E26] tracking-tight">
-            {product.price}
-          </div>
-        </div>
 
         {/* Inclusions Checklist */}
         <div className="space-y-2 mb-6">
@@ -96,7 +86,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="flex items-center justify-center gap-2"
           >
             <PhoneCall className="w-4 h-4" />
-            Pesan &amp; Konsultasi Paket
+            Tanya Harga &amp; Konsultasi
           </a>
         </Button>
       </div>

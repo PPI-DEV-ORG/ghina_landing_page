@@ -1,0 +1,31 @@
+[
+  {
+    "q": "Apakah harga paket sudah termasuk biaya pemasangan?",
+    "a": "Ya, semua paket yang kami tawarkan sudah bersifat all-in. Ini mencakup unit kamera, DVR/NVR, harddisk (penyimpanan), kabel, konektor, hingga instalasi dan konfigurasi ke HP Anda. Tidak ada biaya tersembunyi."
+  },
+  {
+    "q": "Apakah saya bisa memantau CCTV dari HP saat sedang di luar kota?",
+    "a": "Bisa. Kami akan membantu menyambungkan sistem CCTV Anda ke aplikasi smartphone (Android/iOS). Selama DVR/NVR di lokasi terhubung ke internet (WiFi), Anda bisa memantau secara real-time dari mana saja."
+  },
+  {
+    "q": "Bagaimana jika listrik di rumah mati?",
+    "a": "Secara default, CCTV akan ikut mati. Namun, kami menyediakan opsi tambahan pemasangan UPS (Uninterruptible Power Supply) agar CCTV tetap menyala selama beberapa jam saat pemadaman listrik."
+  },
+  {
+    "q": "Berapa lama rekaman CCTV dapat tersimpan di memori?",
+    "a": "Lama penyimpanan rekaman bergantung pada kapasitas harddisk dan jumlah kamera. Untuk standar paket kami berkisar antara 7 hingga 30 hari rekaman kontinu. Sistem akan otomatis menimpa (overwrite) rekaman paling lama ketika memori penuh."
+  },
+  {
+    "q": "Berapa lama garansi yang diberikan oleh CV. Ghina Multiprima?",
+    "a": "Kami memberikan garansi resmi unit dan perangkat keras selama 1 (satu) tahun penuh, serta garansi instalasi pemasangan dan pendampingan teknis jika terjadi kendala."
+  },
+  {
+    "q": "Apakah melayani survei lokasi sebelum memutuskan pemasangan?",
+    "a": "Ya, kami melayani survei lokasi untuk menentukan titik pemasangan kamera yang bebas dari blindspot, memperkirakan kebutuhan jalur pipa conduit kabel, dan memberikan rekomendasi sistem yang paling efisien."
+  },
+  {
+    "q": "Apakah kamera CCTV yang dipasang mendukung integrasi dengan AI atau SAMTEK VMS?",
+    "a": "Tentu. Seluruh perangkat IP Camera yang kami gunakan mendukung standar protokol industri ONVIF & RTSP, sehingga siap dihubungkan langsung ke software SAMTEK VMS untuk analitik kecerdasan buatan seperti People Counting, LPR, dan deteksi objek."
+  }
+]
+

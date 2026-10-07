@@ -48,33 +48,39 @@ export function Footer() {
           {/* Column 2: Layanan & Produk */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
-              Layanan & Produk
+              Layanan Solusi
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-300">
               <li>
                 <Link href="/services" className="hover:text-primary transition-colors">
-                  Paket CCTV Home Office (2 - 8 Channel)
+                  CCTV &amp; Integrated Security System
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="hover:text-primary transition-colors">
-                  Paket CCTV Security Office &amp; Enterprise
+                  IT Infrastructure &amp; Networking
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="hover:text-primary transition-colors">
-                  Smart Baby Cam (1 - 8 Kamera)
+                  AI Video Analytics &amp; Edge Software
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="hover:text-primary transition-colors">
-                  Jasa Instalasi &amp; Pengkabelan Standar Industri
+                  Mechanical Electrical &amp; Maintenance
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-primary transition-colors">
-                  Preventive Maintenance & Kontrak Servis
-                </Link>
+                <a
+                  href="https://cctvpurwakarta.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[#70CB97] hover:underline font-semibold"
+                >
+                  Toko Retail: Ghitech CCTV
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </li>
               <li>
                 <a
