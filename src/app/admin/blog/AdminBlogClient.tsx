@@ -133,7 +133,7 @@ export function AdminBlogClient({ initialBlogs }: AdminBlogClientProps) {
       <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 px-5 py-3 rounded-xl text-emerald-900 text-xs">
         <div className="flex items-center gap-2 font-medium">
           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>Sesi Admin Aktif. Perubahan akan disimpan ke <strong className="font-mono">data/blogs.json</strong>.</span>
+          <span>Sesi Admin Aktif. Perubahan akan disimpan ke <strong className="font-mono">src/data/blogs.json</strong>.</span>
         </div>
         <Button
           variant="outline"

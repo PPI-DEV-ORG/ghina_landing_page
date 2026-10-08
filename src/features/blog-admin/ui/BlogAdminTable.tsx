@@ -128,7 +128,7 @@ export function BlogAdminTable({
             Daftar Artikel Blog ({blogs.length})
           </h2>
           <p className="text-xs text-brand-textMuted mt-1">
-            Data tersimpan secara lokal di server dalam format JSON (<span className="font-mono">data/blogs.json</span>).
+            Data tersimpan secara lokal di server dalam format JSON (<span className="font-mono">src/data/blogs.json</span>).
           </p>
         </div>
         <Button onClick={handleCreate} variant="default" className="font-bold shrink-0">

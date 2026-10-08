@@ -73,17 +73,6 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://cctvpurwakarta.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[#70CB97] hover:underline font-semibold"
-                >
-                  Toko Retail: Ghitech CCTV
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://samtek.id"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -198,19 +187,11 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-6">
             <Link href="/services" className="hover:text-white transition-colors">
-              Paket CCTV
+              Layanan Solusi
             </Link>
             <Link href="/blog" className="hover:text-white transition-colors">
               Artikel & Berita
             </Link>
-            <a
-              href="https://samtek.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              SAMTEK VMS
-            </a>
           </div>
         </div>
       </div>

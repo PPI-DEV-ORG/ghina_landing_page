@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 import { BlogPost, ProductItem } from "@/shared/types";
 
-const blogsFilePath = path.join(process.cwd(), "data", "blogs.json");
-const productsFilePath = path.join(process.cwd(), "data", "products.json");
+const blogsFilePath = path.join(process.cwd(), "src", "data", "blogs.json");
+const productsFilePath = path.join(process.cwd(), "src", "data", "products.json");
 
 export function getBlogs(): BlogPost[] {
   try {

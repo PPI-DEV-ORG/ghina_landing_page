@@ -13,7 +13,7 @@ export function TestimonialsSection() {
   const testimonials = rawTestimonials as TestimonialItem[];
 
   return (
-    <section className="py-20 sm:py-24 bg-[#F0F5F4] border-b border-[#E2ECE8]">
+    <section className="py-20 sm:py-24 bg-white border-b border-[#E2ECE8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="text-xs font-bold uppercase tracking-wider text-[#426A5A] mb-2">
@@ -31,7 +31,7 @@ export function TestimonialsSection() {
           {testimonials.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl border border-[#E2ECE8] p-6 shadow-xs hover:border-[#70CB97]/70 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              className="bg-[#F0F5F4]/40 rounded-2xl border border-[#E2ECE8] p-6 shadow-2xs hover:border-[#70CB97]/70 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center gap-1 text-[#70CB97] mb-4">

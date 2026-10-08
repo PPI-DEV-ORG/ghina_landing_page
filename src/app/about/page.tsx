@@ -13,9 +13,9 @@ import {
   Compass,
   Star,
   ArrowRight,
-  ShieldCheck,
-} from "lucide-react";
+  ShieldCheck,} from "lucide-react";
 import { GalleryModalSection } from "@/widgets/gallery-modal/ui/GalleryModalSection";
+import { TestimonialsSection } from "@/widgets/testimonials/ui/TestimonialsSection";
 import { ContactCtaSection } from "@/widgets/contact-cta/ui/ContactCtaSection";
 
 export const metadata = {
@@ -340,7 +340,10 @@ export default function AboutPage() {
       {/* 6. Field Documentation Gallery (Modal + Grid) - Berada di bawah Track Record */}
       <GalleryModalSection />
 
-      {/* 7. Contact CTA */}
+      {/* 7. Client Testimonials */}
+      <TestimonialsSection />
+
+      {/* 8. Contact CTA */}
       <ContactCtaSection />
     </div>
   );
